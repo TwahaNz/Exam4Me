@@ -18,6 +18,8 @@ public abstract class Student
     private float studentCurrentFee;
     private Exam exam = Exam.getInstance();
     private RetrievedUploadedResults retrievedUploadedResults = RetrievedUploadedResults.getInstance();
+
+    private int term;
     
     public Student(String studentName, String studentNumber){
         this.studentName = studentName;
@@ -38,18 +40,17 @@ public abstract class Student
                 "\n Campus Location: " + studentFaculty.getFacultyLocation();
     }
 
-    public String fetchResults(int term){
-
+    public void fetchResults(int term){
+        this.term = term;
         retrievedResults = retrievedUploadedResults.fecthUploadedResults(studentNumber, term);
-
-        String marks = "";
-
-        for (int i : retrievedResults)
-            marks += "\nSubject: " + i;
-
-        return marks;
     }
     public void printResults(){
+
+        if(term == 4 && getTotalFees() > 0) {
+            System.out.println("\n Please pay your outstanding fees of R" + studentCurrentFee);
+            return;
+        }
+
         new ResultsPrint().displayResults(retrievedResults);
     }
     public void viewResults(){
@@ -57,6 +58,11 @@ public abstract class Student
         System.out.println("\n Student Name: " + studentName +
                           "\n Student Number: " + studentNumber +
                           "\n ================================");
+
+        if(term == 4 && getTotalFees() > 0) {
+            System.out.println("\n Please pay your outstanding fees of R" + studentCurrentFee);
+            return;
+        }
 
         new ResultsView().displayResults(retrievedResults);
     }
