@@ -16,3 +16,8 @@ As seen from the diagram the student and lecturer will both come from a faculty 
 In order for the students to get their results they will need to write and examination as seen on the diagram. The student will write examination for a particular term and will be able to pull results for that term.
 
 Only students who have paid all their fees will be able to recieve thier 4th term results. There are two types of students; Resident students and Non Resident students. The resident students have included fees such as meals and residential fees.
+
+## Lecturer's Approval
+
+![Domain Model](/approved.png)
+
