@@ -24,7 +24,7 @@ public class RetrievedUploadedResults
 
     public static RetrievedUploadedResults getInstance() {
         if (retrievedUploadedResults == null)
-            return new RetrievedUploadedResults();//this.students = new ArrayList<Student>()[5];
+            return new RetrievedUploadedResults();
         return retrievedUploadedResults;
     }
 

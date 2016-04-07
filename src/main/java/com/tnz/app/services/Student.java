@@ -26,7 +26,10 @@ public abstract class Student
         this.studentNumber = studentNumber;
     }
     public Student assignFaculty(String facultyName, String facultyLocation){
-        studentFaculty = new Faculty.Builder(facultyName, facultyLocation).build();
+        studentFaculty = new Faculty.Builder()
+                        .assignFacultyName(facultyName)
+                        .assignFacultyLocation(facultyLocation)
+                        .build();
         return this;
     }
     public Student assignStudentFee(String course){

@@ -67,12 +67,25 @@ public class Lecturer implements UploadMarksImpl
         }
         
         public Builder assignFaculty(String facultyName, String campusLocation){
-            lectureFaculty = new Faculty.Builder(facultyName, campusLocation).build();           
+            lectureFaculty = new Faculty.Builder()
+                            .assignFacultyName(facultyName)
+                            .assignFacultyLocation(campusLocation)
+                            .build();
             return this;
         }
 
         public Lecturer build(){
             return new Lecturer(this);
+        }
+
+        public Builder copyLecturer(Lecturer lecturer) {
+
+            this.name = lecturer.name;
+            this.roomNumber = lecturer.roomNumber;
+            this.staffID = lecturer.staffID;
+            this.lectureFaculty = lecturer.lectureFaculty;
+
+            return this;
         }
     }
 }

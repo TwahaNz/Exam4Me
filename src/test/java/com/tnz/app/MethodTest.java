@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.tnz.app.domain.Lecturer;
 import com.tnz.app.domain.NonResidentStudent;
+import com.tnz.app.domain.RetrievedUploadedResults;
+import com.tnz.app.implementations.ResidentFee;
 import com.tnz.app.services.Student;
 import org.junit.Assert;
 import org.junit.Test;
@@ -16,40 +19,23 @@ import org.junit.Test;
 public class MethodTest{
 
     @Test
-    public void testOutstandingFees(){
+    public void  testLecturerInfoUpdate(){
 
-        Student student = new NonResidentStudent("Test", "123").
-                assignFaculty("Information Technology", "Cape Town").
-                assignStudentFee("Information Technology");
+        Lecturer lecturer1 = new Lecturer.Builder().assignName("Mr. Peter")
+                .assignFaculty("Information Technology", "Cape Town")
+                .assignRoomNumber("Room 2.25")
+                .assignStaffID("123").build();
 
-        int examTerm = 4;
+        Assert.assertEquals(lecturer1.getName(), "Mr. Peter");
+        Assert.assertEquals(lecturer1.getRoomNumber(), "Room 2.25");
+        Assert.assertEquals(lecturer1.getStaffID(), "123");
 
-        student.writeExam(examTerm);
-        student.fetchResults(4);
-        student.viewResults();
+        System.out.println("\n Lecture Current Room: " + lecturer1.getRoomNumber());
 
-    }
+        lecturer1 = new Lecturer.Builder().copyLecturer(lecturer1).assignRoomNumber("Room 2.11").build();
 
-    @Test
-    public void testPayOutstandingFees(){
+        Assert.assertEquals(lecturer1.getRoomNumber(), "Room 2.11");
 
-        Student student = new NonResidentStudent("Test", "123").
-                assignFaculty("Information Technology", "Cape Town").
-                assignStudentFee("Information Technology");
-
-        float total = student.getTotalFees();
-
-        student.payStudentFee(total, "tuition");
-
-        int examTerm = 4;
-
-        student.writeExam(examTerm);
-        student.fetchResults(examTerm);
-        student.viewResults();
-
-        System.out.println(student.displayCurrentFee());
-
-        Assert.assertEquals(student.getTotalFees(), 0, 0);
-
+        System.out.println("\n Lecture Has Move To Room: " + lecturer1.getRoomNumber());
     }
 }

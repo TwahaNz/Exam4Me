@@ -2,6 +2,7 @@ package com.tnz.app.domain;
 
 
 import com.tnz.app.implementations.TuitionFee;
+import com.tnz.app.services.FeesImpl;
 import com.tnz.app.services.Student;
 
 
@@ -13,7 +14,7 @@ import com.tnz.app.services.Student;
  */
 public class NonResidentStudent extends Student
 {
-    private TuitionFee tuitionFee;
+    private FeesImpl tuitionFee;
     
     public NonResidentStudent(String studentName, String studentNumber){
         super(studentName, studentNumber);
@@ -43,4 +44,5 @@ public class NonResidentStudent extends Student
     public float getTotalFees() {
         return tuitionFee.getStudentFee();
     }
+
 }
